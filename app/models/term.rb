@@ -4,7 +4,7 @@ class Term < ActiveRecord::Base
 
   has_many :revisions
   has_many :participants
-  has_many :signatures, through: 'participants'
+  has_many :signatures, through: :participants
 
   validates_associated :revisions
 
@@ -12,8 +12,14 @@ class Term < ActiveRecord::Base
     self.revisions.last.content
   end
 
-  def editable?
-    self.signatures.present?
+  def revisable?
+    self.signatures.empty?
+  end
+
+  def revise! content
+    if revisable?
+      self.revisions << Revision.new(content: content)
+    end
   end
 
 end

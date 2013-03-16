@@ -18,14 +18,14 @@ class TermsController < ApplicationController
 
   def create
     @term = Term.new()
-    @term.revisions << Revision.new(content: term[:content])
+    @term.revise! term[:content]
     @term.save
     respond_with @term
   end
 
   def update
-    @term = Term.where params[:id]
-    @term.revisions << Revision.new(content: term[:content])
+    @term = Term.where(id: params[:id]).first
+    @term.revise! term[:content]
     @term.save
     respond_with @term
   end
