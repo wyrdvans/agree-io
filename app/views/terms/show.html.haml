@@ -1,0 +1,16 @@
+%h2 Terms
+
+%p= @term.content
+
+%div
+  Created at
+  %time= @term.created_at
+
+%h3 Participants
+
+%ul
+  - @term.participants.each do |participant|
+    %li
+      %span= participant.email
+      %span= participant.signature.present? ? 'signed' : 'not yet'
+

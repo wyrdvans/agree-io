@@ -1,0 +1,5 @@
+%h1 Terms
+
+%ul
+  - @terms.each do |term|
+    %li= link_to term.id, term
