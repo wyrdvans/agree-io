@@ -1,5 +1,14 @@
-%h1 Terms
+%h1 Some Terms
+
+= link_to "New Terms", new_term_path
 
 %ul
   - @terms.each do |term|
-    %li= link_to term.id, term
+    %li
+      - if term.revisable?
+        = link_to term.id, [ :edit, term ]
+      - else
+        = link_to term.id, term
+        = "#{term.signatures.count} of #{term.participants.count} signatures." 
+
+

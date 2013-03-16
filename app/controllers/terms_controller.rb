@@ -24,11 +24,27 @@ class TermsController < ApplicationController
     respond_with @term
   end
 
+  def edit
+    @term = Term.where(id: params[:id]).first
+
+    unless @term.revisable?
+      raise Trespasser.new("Do not try to edit signed terms.")
+    end
+
+    respond_with @term
+  end
+
   def update
     @term = Term.where(id: params[:id]).first
+
+    unless @term.revisable?
+      raise Trespasser.new("Do not try to edit signed terms.")
+    end
+
     @term.content = term[:content]
     @term.emails = term[:emails]
     @term.save
+
     respond_with @term
   end
 
