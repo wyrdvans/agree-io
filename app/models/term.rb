@@ -12,14 +12,16 @@ class Term < ActiveRecord::Base
     self.revisions.last.content
   end
 
+  def signed?
+    self.signatures.present?
+  end
+
   def revisable?
     self.signatures.empty?
   end
 
-  def revise! content
-    if revisable?
-      self.revisions << Revision.new(content: content)
-    end
+  def revise!(content)
+    self.revisions << Revision.new(content: content)
   end
 
 end
