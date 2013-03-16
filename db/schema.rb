@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20130315200221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "participants", id: false, force: true do |t|
     t.uuid     "id",         null: false
@@ -38,9 +39,9 @@ ActiveRecord::Schema.define(version: 20130315200221) do
 
   create_table "signatures", id: false, force: true do |t|
     t.uuid     "id",             null: false
-    t.uuid     "participant_id"
-    t.inet     "inet_address"
-    t.macaddr  "mac_address"
+    t.uuid     "participant_id", null: false
+    t.inet     "inet_address",   null: false
+    t.macaddr  "mac_address",    null: false
     t.datetime "created_at"
   end
 

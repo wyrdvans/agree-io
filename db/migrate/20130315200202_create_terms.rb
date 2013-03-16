@@ -1,8 +1,9 @@
-class CreateTerms < ActiveRecord::Migration
-  def change
-    create_table "terms", id: false, force: true do |t|
-      t.uuid     "id",         null: false
-      t.datetime "created_at"
-    end
+class CreateTerms < ActiveRecord::Migration 
+  def up
+    MigrationAssist.create_uuid_pk_table "terms"
+    add_column :terms, :created_at, :datetime
+  end
+  def down
+    drop_table :terms
   end
 end
