@@ -83,8 +83,8 @@ CREATE TABLE schema_migrations (
 CREATE TABLE signatures (
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     participant_id uuid NOT NULL,
-    inet_address inet NOT NULL,
-    mac_address macaddr NOT NULL,
+    ip inet NOT NULL,
+    mac macaddr NOT NULL,
     created_at timestamp without time zone
 );
 

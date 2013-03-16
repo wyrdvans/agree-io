@@ -1,0 +1,4 @@
+= simple_form_for @term do |f|
+  = f.input :content, as: 'text', label: 'Terms'
+  = f.input :emails, as: 'text', label: 'Emails', hint: 'jon@agree.io, you@example.com'
+  = f.button :submit

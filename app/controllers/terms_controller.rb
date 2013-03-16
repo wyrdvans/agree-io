@@ -18,14 +18,16 @@ class TermsController < ApplicationController
 
   def create
     @term = Term.new()
-    @term.revise! term[:content]
+    @term.content = term[:content]
+    @term.emails = term[:emails]
     @term.save
     respond_with @term
   end
 
   def update
     @term = Term.where(id: params[:id]).first
-    @term.revise! term[:content]
+    @term.content = term[:content]
+    @term.emails = term[:emails]
     @term.save
     respond_with @term
   end
@@ -33,7 +35,7 @@ class TermsController < ApplicationController
   private
 
   def term
-    params.require(:term).permit(:content)
+    params.require(:term).permit(:content, :emails)
   end
 
 

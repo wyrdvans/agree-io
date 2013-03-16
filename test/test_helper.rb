@@ -1,15 +1,23 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+require 'minitest/pride'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
+end
 
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  fixtures :all
+def basic_term
+  t = Term.new
+  t.content = "Initial version"
+  t.emails = "a@agree.io, b@agree.io"
+  t.save
+  t
+end
 
-  # Add more helper methods to be used by all tests here...
+def signed_term
+  t = basic_term
+  t.sign! t.participants.first.id, '127.0.0.1', '01:23:45:67:89:ab'
+  t.save
+  t
 end
