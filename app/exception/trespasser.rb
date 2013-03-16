@@ -1,0 +1,2 @@
+class Trespasser < StandardError; end
+

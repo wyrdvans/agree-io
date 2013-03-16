@@ -1,0 +1,15 @@
+%h1 Sign The Terms?
+%p= @term.content
+
+
+%h2 Terms:
+%div= link_to "Sign", signatures_path(term_id: @term, participant_id: @participant), method: 'POST'
+
+
+%h3 Your Secret Identifier for this Agreement
+%div.participant_id= @participant.id
+
+
+%h3 Term Identifiery
+%div.term_id= @term.id
+

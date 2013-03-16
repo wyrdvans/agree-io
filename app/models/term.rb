@@ -4,7 +4,7 @@ class Term < ActiveRecord::Base
 
   has_many :revisions
   has_many :participants
-  has_many :signatures, through: :participants
+  has_many :signatures
 
   validates_associated :revisions
   validates_associated :participants
@@ -31,7 +31,7 @@ class Term < ActiveRecord::Base
   end
 
   def sign! participant_id, ip, mac
-    Signature.create(participant_id: participant_id, ip: ip, mac: mac)
+    Signature.create(participant_id: participant_id, term_id: self.id, ip: ip, mac: mac)
   end
 
   def signed?

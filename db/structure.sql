@@ -83,8 +83,9 @@ CREATE TABLE schema_migrations (
 CREATE TABLE signatures (
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     participant_id uuid NOT NULL,
-    ip inet NOT NULL,
-    mac macaddr NOT NULL,
+    term_id uuid NOT NULL,
+    ip inet,
+    mac macaddr,
     created_at timestamp without time zone
 );
 
@@ -157,6 +158,13 @@ CREATE INDEX index_revisions_on_term_id ON revisions USING btree (term_id);
 --
 
 CREATE INDEX index_signatures_on_participant_id ON signatures USING btree (participant_id);
+
+
+--
+-- Name: index_signatures_on_term_id_and_participant_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_signatures_on_term_id_and_participant_id ON signatures USING btree (term_id, participant_id);
 
 
 --
