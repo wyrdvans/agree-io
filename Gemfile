@@ -9,6 +9,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
 
 # Gems used only for assets and not required
 # in production environments by default.
