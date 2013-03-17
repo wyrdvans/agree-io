@@ -3,7 +3,14 @@ class TermsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @terms = Term.all
+    if current_email.present?
+      @terms = Participant.
+        where(email: current_email).
+        joins(:term).
+        map(&:term)
+    else
+      @terms = []
+    end
   end
 
   def show

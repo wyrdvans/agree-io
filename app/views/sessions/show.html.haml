@@ -1,1 +1,11 @@
-= debug @session
+%h2 You Are
+
+- if current_email
+  %div= current_email
+- else
+  %div
+    Not signed in yet.  You can
+    = link_to 'sign in with Google+', '/auth/google_oauth2'
+    
+  
+%div{ class: 'hidden' }= debug @session

@@ -7,4 +7,12 @@ class ApplicationController < ActionController::Base
     render '/shared/trespasser'
   end
 
+  protected
+
+  helper_method :current_email
+
+  def current_email
+    session['current_user']['info']['email'] rescue nil
+  end
+
 end

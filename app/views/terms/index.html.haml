@@ -1,11 +1,11 @@
 %ol
   - @terms.each do |term|
     %li
-      - if term.revisable?
-        = link_to term.content, [ :edit, term ]
-      - else
-        %p= link_to truncate(term.content), term
-        %p= "#{term.signatures.count} of #{term.participants.count} signatures." 
-      %time= I18n.l(term.created_at)
+      %div= link_to truncate(term.content, length: 60), term
+      %div= "#{term.signatures.count} of #{term.participants.count} signatures." 
+      %div{title: term.created_at}
+        Created at
+        %time{datetime: term.created_at}= time_ago_in_words(term.created_at)
+        ago.
 
           

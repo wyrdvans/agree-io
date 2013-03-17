@@ -9,6 +9,6 @@
 
 %h4 Created At
 %p
-  %time= l(@term.created_at)
-
-
+  Created
+  %time{ datetime: @term.created_at }= time_ago_in_words(@term.created_at)
+  ago.
