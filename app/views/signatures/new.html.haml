@@ -2,8 +2,7 @@
 %p= @term.content
 
 
-%h2 Terms:
-%div= link_to "Sign", signatures_path(term_id: @term, participant_id: @participant), method: 'POST'
+%div= link_to "Yes, I'm in.", signatures_path(term_id: @term, participant_id: @participant), method: 'POST', class: 'button'
 
 
 %h3 Your Secret Identifier for this Agreement

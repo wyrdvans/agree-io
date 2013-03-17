@@ -20,6 +20,12 @@
 %body
   = render partial: 'shared/nav'
 
+  - if flash[:error].present?
+    %div{ class: 'row' }
+      %div{'data-alert' => true, 'class' => 'alert-box large-8 columns'}
+        = flash[:error]
+        %a{href: "#", class: "close"} &times;
+
   %div{ class: 'row' }
     %div{ class: 'large-8 columns' }
       = yield

@@ -1,5 +1,8 @@
-%h2= @signature.id
+%h3 Signature ID
+%p= link_to @signature.id, @signature
 
+%h3 Term ID
+%p= link_to @signature.term.id, @signature.term
+
+%h4 Created At
 %time= @signature.created_at
-
-= link_to 'Term', @signature.term

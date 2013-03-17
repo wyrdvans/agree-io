@@ -12,3 +12,6 @@
   Created
   %time{ datetime: @term.created_at }= time_ago_in_words(@term.created_at)
   ago.
+
+- if current_email.present?
+  = signature_link @term, current_email
