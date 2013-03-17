@@ -79,9 +79,9 @@ Agree::Application.configure do
     user_name:      ENV['MAILGUN_SMTP_LOGIN'],
     password:       ENV['MAILGUN_SMTP_PASSWORD'],
     domain:         'app13528860.mailgun.org',
-    authentication: 'plain',
-    tls:            true,
-    enable_starttls_auto: true
+    authentication: 'plain'
+    #tls:            true,
+    #enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
