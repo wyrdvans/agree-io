@@ -74,7 +74,7 @@ Agree::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    authentication: :ssl,
+    authentication: :starttls,
     address: ENV['MAILGUN_SMTP_SERVER'],
     port: ENV['MAILGUN_SMTP_PORT'],
     domain: 'agree.io',
