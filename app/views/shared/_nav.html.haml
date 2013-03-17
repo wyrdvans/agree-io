@@ -1,0 +1,18 @@
+%nav{ class: 'top-bar' }
+  %ul{ class: 'title-area' }
+    %li{ class: 'name' }
+      %h1
+        %a{ href: '#' } Agree
+    %li{ class: 'toggle-topbar' }
+      %a{ href: '#' }
+        %span Your Terms
+  %section{ class: 'top-bar-section' }
+    %ul{ class: 'left' }
+      %li= link_to 'New', new_term_path
+      %li= link_to 'List', terms_path
+    %ul{ class: 'right' }
+      %li{ class: 'has-dropdown' }
+        = link_to("Sign In", "#")
+        %ul{ class: 'dropdown' }
+          %li= link_to("Google+", '/auth/google_oauth2')
+        

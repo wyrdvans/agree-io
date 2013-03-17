@@ -1,14 +1,11 @@
-%h1 Some Terms
-
-= link_to "New Terms", new_term_path
-
-%ul
+%ol
   - @terms.each do |term|
     %li
       - if term.revisable?
-        = link_to term.id, [ :edit, term ]
+        = link_to term.content, [ :edit, term ]
       - else
-        = link_to term.id, term
-        = "#{term.signatures.count} of #{term.participants.count} signatures." 
+        %p= link_to truncate(term.content), term
+        %p= "#{term.signatures.count} of #{term.participants.count} signatures." 
+      %time= term.created_at
 
-
+          
