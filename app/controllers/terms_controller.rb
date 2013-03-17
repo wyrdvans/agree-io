@@ -28,6 +28,11 @@ class TermsController < ApplicationController
     @term.content = term[:content]
     @term.emails = term[:emails]
     @term.save
+
+    if @term.invalid?
+      flash[:error] = "The terms could not be saved."
+    end
+
     respond_with @term
   end
 
