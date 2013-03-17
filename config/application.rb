@@ -22,7 +22,7 @@ module Agree
     # Using PostgreSQL extensions means using a SQL dump.
     config.active_record.schema_format = :sql
 
-    config.logger = Logger.new(STDOUT)
+    #config.logger = Logger.new(STDOUT)
 
   end
 end
