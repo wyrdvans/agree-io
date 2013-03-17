@@ -10,7 +10,7 @@ class Term < ActiveRecord::Base
   validates_associated :participants
   validates :content, presence: true
   validates :emails, presence: true
-  validates :participants, length: { minimum: 2 }
+  validates :participants, length: { minimum: 1, maximum: 12 }
 
   after_save :inform_participants
 
