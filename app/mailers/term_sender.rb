@@ -1,5 +1,5 @@
 class TermSender < ActionMailer::Base
-  default from: "notifier@agree.io"
+  default from: "agree.io@app13528860.mailgun.org"
 
   def send_to_participants term
     term.participants.map do |participant|
