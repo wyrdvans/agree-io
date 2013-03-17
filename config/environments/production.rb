@@ -74,12 +74,14 @@ Agree::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    authentication: :starttls,
-    address: ENV['MAILGUN_SMTP_SERVER'],
-    port: ENV['MAILGUN_SMTP_PORT'],
-    domain: 'app13528860.mailgun.org',
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    address:        ENV['MAILGUN_SMTP_SERVER'],
+    port:           ENV['MAILGUN_SMTP_PORT'],
+    user_name:      ENV['MAILGUN_SMTP_LOGIN'],
+    password:       ENV['MAILGUN_SMTP_PASSWORD'],
+    domain:         'app13528860.mailgun.org',
+    authentication: 'plain',
+    tls:            true,
+    enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

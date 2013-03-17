@@ -6,7 +6,7 @@ class TermSender < ActionMailer::Base
       @term_id = term.id
       @participant_id = participant.id
       mail(subject: "New Terms: Do you agree?",
-           to: participant.email)
+           to: participant.email).deliver
     end
   end
 
