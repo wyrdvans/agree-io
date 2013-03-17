@@ -2,11 +2,13 @@
 
 %p= @term.content
 
-%h3 Created At
-%time= @term.created_at
-
 %h3 Participants
 %ul
   - @term.participants.each do |participant|
     %li= render participant
+
+%h4 Created At
+%p
+  %time= l(@term.created_at)
+
 

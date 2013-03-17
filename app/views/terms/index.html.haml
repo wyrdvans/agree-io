@@ -6,6 +6,6 @@
       - else
         %p= link_to truncate(term.content), term
         %p= "#{term.signatures.count} of #{term.participants.count} signatures." 
-      %time= term.created_at
+      %time= I18n.l(term.created_at)
 
           

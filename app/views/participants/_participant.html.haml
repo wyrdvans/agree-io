@@ -1,5 +1,6 @@
 %span= participant.email
 -if participant.signature.present?
-  %time= participant.signature.created_at
+  %span agreed at
+  %time= l(participant.signature.created_at)
 -else
   not signed yet
