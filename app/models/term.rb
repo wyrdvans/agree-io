@@ -12,6 +12,8 @@ class Term < ActiveRecord::Base
   validates :emails, presence: true
   validates :participants, length: { minimum: 2 }
 
+  after_save :inform_participants
+
   def content
     self.revisions.last.try(:content)
   end
@@ -62,6 +64,10 @@ class Term < ActiveRecord::Base
     else
       []
     end
+  end
+
+  def inform_participants
+    TermSender.send_to_participants self
   end
 
 end

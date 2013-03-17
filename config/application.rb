@@ -21,7 +21,7 @@ module Agree
     # Using PostgreSQL extensions means using a SQL dump.
     config.active_record.schema_format = :sql
 
-    #config.logger = Logger.new(STDOUT)
+    config.action_mailer.default_url_options = { :host => "agree.io" }
 
   end
 end
