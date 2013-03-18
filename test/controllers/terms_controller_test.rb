@@ -2,16 +2,23 @@ require 'test_helper'
 
 class TermsControllerTest < ActionController::TestCase
 
+  setup do
+    @unsigned, @signed = basic_term, signed_term
+  end
+
   test "listing terms does not show things that aren't mine" do
-    t = basic_term
     get :index
     assert_response :success
-    refute assigns(:terms).include?(t)
+    refute assigns(:terms).include?(@unsigned)
   end
 
   test "viewing a term" do
-    t = basic_term
-    get :show, id: t.id
+    get :show, id: @unsigned.id
+    assert_response :success
+  end
+
+  test "getting a term as json" do
+    get :show, id: @unsigned.id, format: 'json'
     assert_response :success
   end
 
@@ -35,17 +42,16 @@ class TermsControllerTest < ActionController::TestCase
     assert_no_difference 'Term.count' do
       post :create, { term: { content: "", emails: "" } }
     end
+    assert_response 409
   end
 
-  test "updating an unsigned term succeeds" do
-    t = basic_term
-    put :update, id: t.id, term: { content: "IS it too late?" }, format: 'json'
+  test "updating an unsigned term succeeds" do   
+    put :update, id: @unsigned.id, term: { content: "IS it too late?" }, format: 'json'
     assert_response :success
   end
 
   test "updating a signed term fails (and is forbidden)" do
-    t = signed_term    
-    put :update, id: t.id, term: { content: "IS it too late?" }, format: 'json'
+    put :update, id: @signed.id, term: { content: "IS it too late?" }, format: 'json'
     assert_response :forbidden
   end
 

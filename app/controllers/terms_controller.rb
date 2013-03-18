@@ -15,7 +15,7 @@ class TermsController < ApplicationController
 
   def show
     @term = Term.where(id: params[:id]).first
-    respond_with @term, methods: 'content'
+    respond_with @term, methods: [ 'content' ]
   end
 
   def new
@@ -24,16 +24,21 @@ class TermsController < ApplicationController
   end
 
   def create
-    @term = Term.new()
+    @term = Term.new
     @term.content = term[:content]
-    @term.emails = term[:emails]
+    @term.emails  = term[:emails]
     @term.save
 
-    if @term.invalid?
-      flash[:error] = "The terms could not be saved."
+    respond_with @term do |format|
+      if @term.invalid?
+        flash[:error] = "The terms could not be saved."
+        format.html { render :new, status: 409 }
+      else
+        flash[:error] = "The terms were saved and participants were informed."
+        format.html { redirect_to @term }
+      end
     end
 
-    respond_with @term
   end
 
   def edit
