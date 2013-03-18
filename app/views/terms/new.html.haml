@@ -2,3 +2,6 @@
   = f.input :content, as: 'text', label: 'Terms', placeholder: "For example: $100k at $5 million pre-money."
   = f.input :emails,  as: 'text', label: 'Emails', placeholder: "me@agree.io, you@example.com"
   = f.button :submit, 'Send Terms'
+
+- content_for :about do
+  = render partial: '/shared/about'

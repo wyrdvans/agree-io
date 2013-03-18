@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
     render '/shared/trespasser'
   end
 
+  def about
+  end
+
   protected
 
   helper_method :current_email

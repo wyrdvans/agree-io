@@ -8,4 +8,5 @@
         %time{datetime: term.created_at}= time_ago_in_words(term.created_at)
         ago.
 
-          
+- if current_email.blank?
+  %p For now, you need to authenticate using a Google account to see your terms.  Support for listing terms you've created without logging in is coming soon.  Of course, you can open terms using the link that was emailed to you.

@@ -6,6 +6,8 @@ Agree::Application.routes.draw do
   resources :terms
   resource :session
 
+  get '/about', to: 'application#about'
+
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: 'sessions#failure'
 
