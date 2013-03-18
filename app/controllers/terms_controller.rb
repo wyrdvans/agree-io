@@ -15,7 +15,7 @@ class TermsController < ApplicationController
 
   def show
     @term = Term.where(id: params[:id]).first
-    respond_with @term
+    respond_with @term, methods: 'content'
   end
 
   def new
