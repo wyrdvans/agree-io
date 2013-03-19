@@ -13,6 +13,11 @@ class SessionsController < ApplicationController
     @session = session[:current_user]
   end
 
+  def destroy
+    session.delete :current_user
+    redirect_to root_url
+  end
+
   protected
 
   def auth_hash

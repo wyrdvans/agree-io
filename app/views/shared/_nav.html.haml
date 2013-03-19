@@ -16,12 +16,15 @@
           = link_to("Sign In", "#")
           %ul{ class: 'dropdown' }
             %li{ class: 'divider' }
-              %li= link_to("Google+", '/auth/google_oauth2')
+              %li= link_to('Google+', '/auth/google_oauth2')
             %li{ class: 'divider' }
       - else
         %li
           = link_to session_path do
             = image_tag gravatar_image(current_email), class: 'gravatar'
             = current_email
+        %ul{ class: 'dropdown' }
+          %li{ class: 'divider' }
+            %li= link_to 'Logout', session_path, method: 'destroy'
 
         
