@@ -1,11 +1,11 @@
-Agree::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
-  # your application in memory, allowing both thread web servers
+  # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
@@ -20,13 +20,15 @@ Agree::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = true
+  config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :sass
+  config.assets.js_compressor = :uglifier
+  # config.assets.css_compressor = :sass
 
-  # Whether to fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.precompile += %w( vendor/modernizr.js )
+
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
 
   # Generate digests for assets URLs.
@@ -40,7 +42,7 @@ Agree::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
@@ -64,28 +66,9 @@ Agree::Application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_options = {
-    mime_version:  "1.0",
-    charset:       "UTF-8",
-    content_type:  "text/plain",
-    parts_order: [ "text/plain", "text/enriched", "text/html" ] 
-  }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.smtp_settings = {
-    address:        ENV['MAILGUN_SMTP_SERVER'],
-    port:           ENV['MAILGUN_SMTP_PORT'],
-    user_name:      ENV['MAILGUN_SMTP_LOGIN'],
-    password:       ENV['MAILGUN_SMTP_PASSWORD'],
-    domain:         'app13528860.mailgun.org',
-    authentication: 'plain'
-    #tls:            true,
-    #enable_starttls_auto: true
-  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation can not be found).
+  # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners.
@@ -97,5 +80,6 @@ Agree::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  GA.tracker = ENV['GOOGLE_ANALYTICS']
+  # Do not dump schema after migrations.
+  config.active_record.dump_schema_after_migration = false
 end

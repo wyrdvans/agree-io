@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  skip_before_filter :authenticate
+
   def create
     session[:current_user] = auth_hash
     redirect_to '/'
